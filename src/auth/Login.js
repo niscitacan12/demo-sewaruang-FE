@@ -66,14 +66,14 @@ function Login() {
                                 alt="Logo" 
                                 style={{ objectFit: 'cover' }} 
                             />
-                             Sign in to your account  
+                             Masuk ke akun anda  
                         </a>
                         <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit} method='POST'>
                             <div className="relative">
                                 <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                     <div className="flex items-center">
                                         <FaUser className="w-4 h-4 mr-2" />
-                                        Your Username
+                                        Nama Pengguna 
                                     </div>
                                 </label>
                                 <input
@@ -118,18 +118,18 @@ function Login() {
                                         />
                                     </div>
                                     <div className="ml-3 text-sm">
-                                        <label htmlFor="show-password" className="text-gray-500 dark:text-gray-300">show password</label>
+                                        <label htmlFor="show-password" className="text-gray-500 dark:text-gray-300">tampilkan kata sandi</label>
                                     </div>
                                 </div>
                             </div>
                             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                                Don’t have an account yet? <a href="/register" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign Up</a>
+                                Belum punya akun? <a href="/register" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Mendaftar</a>
                             </p>
                             <button
                                 type="submit"
                                 className="text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 float-right"
                             >
-                                Sign In
+                                Masuk
                             </button>
                         </form>
                     </div>

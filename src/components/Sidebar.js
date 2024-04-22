@@ -89,7 +89,7 @@ const Sidebar = () => {
                                 onClick={logout}
                             >
                                 <FaSignInAlt className="inline-block w-6 h-6 mr-2 -mt-2" />
-                                <span className="flex-1 ms-3 whitespace-nowrap">Sign In</span>
+                                <span className="flex-1 ms-3 whitespace-nowrap">Logout</span>
                             </a>
                         </li>
                     </ul>

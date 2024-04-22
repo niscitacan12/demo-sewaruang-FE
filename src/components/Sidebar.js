@@ -40,7 +40,7 @@ const Sidebar = () => {
                 className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform bg-blue-900 dark:bg-blue-900 lg:translate-x-0 ${showSidebar ? 'translate-x-0' : '-translate-x-full'}`}
                 aria-label="Sidebar"
             >
-                <div className="h-full px-3 py-4 overflow-y-auto bg-blue-400 dark:bg-blue-400">
+                <div className="h-full px-3 py-4 overflow-y-auto bg-blue-500 dark:bg-blue-500">
                     <div className="flex items-center justify-center mb-3">
                         <span className="text-xl font-bold text-gray-800">Sewa Ruang</span>
                     </div>

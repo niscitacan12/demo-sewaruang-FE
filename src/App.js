@@ -10,6 +10,10 @@ import UpdatePelanggan from "./pages/dataPelanggan/UpdatePelanggan";
 import DataRuang from "./pages/dataRuang/DataRuang";
 import TambahRuang from "./pages/dataRuang/TambahRuang";
 import UpdateRuang from "./pages/dataRuang/UpdateRuang";
+import DataBookingTempat from "./pages/dataBookingTempat/DataBookingTempat";
+import MenuTambahan from "./pages/menuTambahan/MenuTambahan";
+import TambahMenuTambahan from "./pages/menuTambahan/TambahMenuTambahan";
+import UpdateMenuTambahan from "./pages/menuTambahan/UpdateMenuTambahan";
 
 function App() {
   return (
@@ -33,6 +37,14 @@ function App() {
           <Route path="/data_ruangan/tambah_ruangan" element={<TambahRuang />} />
 
           <Route path="/data_ruangan/ubah_ruangan/:id" element={<UpdateRuang />} />
+
+          <Route path="/peminjaman_tempat" element={<DataBookingTempat />} />
+
+          <Route path="/menu_tambahan" element={<MenuTambahan />} />
+
+          <Route path="/menu_tambahan/tambah_menu_tambahan" element={<TambahMenuTambahan />} />
+
+          <Route path="/menu_tambahan/ubah_menu_tambahan/:id" element={<UpdateMenuTambahan />} />
         </Routes>
       </BrowserRouter>
     </div>

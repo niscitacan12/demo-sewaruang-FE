@@ -68,14 +68,14 @@ const Sidebar = () => {
                             </a>
                         </li>
                         <li className="cursor-pointer text-[19px] px-3 pt-2 pb-1 rounded-lg mt-4 hover:bg-blue-100 hover:text-black">
-                            <a href="#" 
+                            <a href="/peminjaman_tempat" 
                                 className="flex items-center p-2 text-blue-200 rounded-lg dark:text-white hover:bg-blue-500 dark:hover:bg-blue-500 group">
                                 <FaCalendarCheck className="inline-block w-6 h-6 mr-2 -mt-2" />
                                 <span className="ms-3">Penyewaan Aula Acara</span>
                             </a>
                         </li>
                         <li className="cursor-pointer text-[19px] px-3 pt-2 pb-1 rounded-lg mt-4 hover:bg-blue-100 hover:text-black">
-                            <a href="#" 
+                            <a href="/menu_tambahan" 
                                 className="flex items-center p-2 text-blue-200 rounded-lg dark:text-white hover:bg-blue-500 dark:hover:bg-blue-500 group">
                                 <FaBars className="inline-block w-6 h-6 mr-2 -mt-2" />
                                 <span className="ms-3">Opsi Tambahan</span>

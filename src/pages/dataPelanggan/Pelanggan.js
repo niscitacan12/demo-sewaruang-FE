@@ -35,7 +35,7 @@ const Pelanggan = () => {
     
         await Swal.fire({
           title: "Anda yakin?",
-          text: "Yakin ingin menghapus data Guru ini?",
+          text: "Yakin ingin menghapus data ini?",
           icon: "warning",
           showCancelButton: true,
           confirmButtonColor: "#3085d6",

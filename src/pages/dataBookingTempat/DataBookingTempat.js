@@ -3,6 +3,7 @@ import Sidebar from '../../components/Sidebar'
 import { FaAngleLeft, FaAngleRight, FaPenSquare, FaPlus, FaSearch, FaTrashAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const DataBookingTempat = () => {
     const [data_booking_tempat, setData_booking_tempat] = useState([]);
@@ -27,6 +28,43 @@ const DataBookingTempat = () => {
         } catch (error) {
             console.error("Error fetching data:", error);
         }
+    };
+
+    const deleteBookingTempat = async (id) => {
+        const token = localStorage.getItem("token");
+    
+        await Swal.fire({
+          title: "Anda yakin?",
+          text: "Yakin ingin menghapus data ini?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Ya, hapus!",
+          cancelButtonText: "Batal",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            axios
+              .delete(`http://localhost:7000/api/data_tempat/delete/${id}`, {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              })
+              .then(() => {
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Berhasil Menghapus!!",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                getAllDataBookingtempat();
+              })
+              .catch((error) => {
+                console.error("Error deleting data:", error);
+              });
+          }
+        });
     };
 
     // Pagination
@@ -72,7 +110,7 @@ const DataBookingTempat = () => {
                             className="px-3 py-2 border rounded-md"
                         />
                     </div>
-                    <Link to={``}>
+                    <Link to={`/peminjaman_tempat/tambah_peminjaman_tempat`}>
                         <button className="z-20 block rounded-full border-2 border-white bg-blue-100 p-4 text-blue-700 transition-all hover:scale-110 focus:outline-none focus:ring active:bg-blue-50">
                             <FaPlus className="z-20" title="Plus" />
                         </button>
@@ -123,7 +161,7 @@ const DataBookingTempat = () => {
                                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                 >
                                     {dataPeminjamanTempat.pelangganModel
-                                        ? dataPeminjamanTempat.pelangganModel.nama_pelanggan`` : ""
+                                        ? dataPeminjamanTempat.pelangganModel.nama_pelanggan : ""
                                     }
                                 </td>
                                 <td className="px-6 py-4">{dataPeminjamanTempat.jam_awal}</td>
@@ -131,14 +169,14 @@ const DataBookingTempat = () => {
                                 <td className="px-6 py-4">{dataPeminjamanTempat.tanggal}</td>
                                 <td className="whitespace-nowrap text-center py-2">
                                     <div className="flex items-center hover:space-x-1">
-                                        <Link to={``}>
+                                        <Link to={`/peminjaman_tempat/ubah_peminjaman_tempat/${dataPeminjamanTempat.id}`}>
                                         <button className="z-20 block rounded-full border-2 border-white bg-blue-100 p-4 text-blue-700 transition-all hover:scale-110 focus:outline-none focus:ring active:bg-blue-50"
                                         >
                                             <FaPenSquare className="z-20" title="Edit" />
                                         </button>
                                         </Link>
                                         <button className="z-30 block rounded-full border-2 border-white bg-red-100 p-4 text-red-700 transition-all hover:scale-110 focus:outline-none focus:ring active:bg-red-50"
-                                        // onClick={() => deletePelanggan(dataUser.id)}
+                                        onClick={() => deleteBookingTempat(dataPeminjamanTempat.id)}
                                         >
                                             <FaTrashAlt className="z-30" title="Delete" />
                                         </button>

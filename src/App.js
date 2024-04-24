@@ -14,6 +14,8 @@ import DataBookingTempat from "./pages/dataBookingTempat/DataBookingTempat";
 import MenuTambahan from "./pages/menuTambahan/MenuTambahan";
 import TambahMenuTambahan from "./pages/menuTambahan/TambahMenuTambahan";
 import UpdateMenuTambahan from "./pages/menuTambahan/UpdateMenuTambahan";
+import TambahDataBookingTempat from "./pages/dataBookingTempat/TambahDataBookingTempat";
+import UpdateDataBookingTempat from "./pages/dataBookingTempat/UpdateDataBookingTempat";
 
 function App() {
   return (
@@ -39,6 +41,10 @@ function App() {
           <Route path="/data_ruangan/ubah_ruangan/:id" element={<UpdateRuang />} />
 
           <Route path="/peminjaman_tempat" element={<DataBookingTempat />} />
+
+          <Route path="/peminjaman_tempat/tambah_peminjaman_tempat" element={<TambahDataBookingTempat />} />
+
+          <Route path="/peminjaman_tempat/ubah_peminjaman_tempat/:id" element={<UpdateDataBookingTempat />} />
 
           <Route path="/menu_tambahan" element={<MenuTambahan />} />
 

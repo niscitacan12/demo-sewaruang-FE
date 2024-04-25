@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../../components/Sidebar'
-import { FaAngleLeft, FaAngleRight, FaPenSquare, FaPlus, FaSearch, FaTrashAlt } from 'react-icons/fa'
+import { FaAngleLeft, FaAngleRight, FaInfo, FaPenSquare, FaPlus, FaSearch, FaTrashAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -174,6 +174,11 @@ const DataBookingTempat = () => {
                                         >
                                             <FaPenSquare className="z-20" title="Edit" />
                                         </button>
+                                        </Link>
+                                        <Link  to={`/peminjaman_tempat/detail_peminjaman_tempat/${dataPeminjamanTempat.id}`}>
+                                            <button className="z-20 block rounded-full border-2 border-white bg-blue-100 p-4 text-blue-700 transition-all hover:scale-110 focus:outline-none focus:ring active:bg-blue-50">
+                                                <FaInfo className="z-20" title="Info" />
+                                            </button>
                                         </Link>
                                         <button className="z-30 block rounded-full border-2 border-white bg-red-100 p-4 text-red-700 transition-all hover:scale-110 focus:outline-none focus:ring active:bg-red-50"
                                         onClick={() => deleteBookingTempat(dataPeminjamanTempat.id)}

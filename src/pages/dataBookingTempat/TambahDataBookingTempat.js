@@ -7,23 +7,23 @@ import axios from 'axios';
 const TambahDataBookingTempat = () => {
     const [selectedPelanggan, setSelectedPelanggan] = useState("");
     const [pelanggan, setPelanggan] = useState([]);
-    const [selectedMenu_tambah, setSelectedMenu_tambahan] = useState("");
-    const [menu_tambah, setMenu_tambahan] = useState([]);
-    const [selectedData_ruang, setSelecteData_ruang] = useState("");
-    const [data_ruang, setData_ruang] = useState([]);
+    const [selectedTambahMenu, setSelectedTambahMenu] = useState("");
+    const [tambahMenu, setTambahMenu] = useState([]);
+    const [selectedDataRuang, setSelecteDataRuang] = useState("");
+    const [dataRuang, setDataRuang] = useState([]);
     const [jam_akhir, setJam_akhir] = useState("");
     const [jam_awal, setJam_awal] = useState("");
     const [jumlah_orang, setJumlah_orang] = useState("");
     const [keterangan, setKeterangan] = useState("");
     const [tanggal, setTanggal] = useState("");
-
+ 
     const addMenuTambah = async (e) => {
         e.preventDefault();
     
         const newMenuTambah = {
           pelangganModel: selectedPelanggan,
-          menu_tambahModel: selectedMenu_tambah,
-          dataRuang: selectedData_ruang,
+          tambahMenuModel: selectedTambahMenu,
+          dataRuangModel: selectedDataRuang,
           jam_akhir,
           jam_awal,
           jumlah_orang,
@@ -97,7 +97,7 @@ const TambahDataBookingTempat = () => {
                 },
             });
             
-            setData_ruang(response.data);
+            setDataRuang(response.data);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -114,7 +114,7 @@ const TambahDataBookingTempat = () => {
                 },
             });
             
-            setMenu_tambahan(response.data);
+            setTambahMenu(response.data);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -180,9 +180,9 @@ const TambahDataBookingTempat = () => {
                             </label>
                             <select
                                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
-                                value={selectedData_ruang ? selectedData_ruang.id : ""}
+                                value={selectedDataRuang ? selectedDataRuang.id : ""}
                                 onChange={(e) =>
-                                    setSelecteData_ruang({
+                                    setSelecteDataRuang({
                                     id: e.target.value,
                                     tempat: e.target.options[e.target.selectedIndex].text,
                                     })
@@ -192,9 +192,9 @@ const TambahDataBookingTempat = () => {
                                 <option value="" disabled>
                                         Pilih Ruangan
                                     </option>
-                                    {data_ruang.map((Data_ruangItem) => (
-                                        <option key={Data_ruangItem.id} value={Data_ruangItem.id}>
-                                        {Data_ruangItem.tempat}
+                                    {dataRuang.map((dataRuangItem) => (
+                                        <option key={dataRuangItem.id} value={dataRuangItem.id}>
+                                        {dataRuangItem.tempat}
                                         </option>
                                 ))}
                             </select>
@@ -207,9 +207,9 @@ const TambahDataBookingTempat = () => {
                             </label>
                             <select
                                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
-                                value={selectedMenu_tambah ? selectedMenu_tambah.id : ""}
+                                value={selectedTambahMenu ? selectedTambahMenu.id : ""}
                                 onChange={(e) =>
-                                    setSelectedMenu_tambahan({
+                                    setSelectedTambahMenu({
                                     id: e.target.value,
                                     nama_item: e.target.options[e.target.selectedIndex].text,
                                     })
@@ -219,9 +219,9 @@ const TambahDataBookingTempat = () => {
                                 <option value="" disabled>
                                         Pilih Menu Tambah
                                     </option>
-                                    {menu_tambah.map((Menu_tambahItem) => (
-                                        <option key={Menu_tambahItem.id} value={Menu_tambahItem.id}>
-                                        {Menu_tambahItem.nama_item}
+                                    {tambahMenu.map((tambahMenuItem) => (
+                                        <option key={tambahMenuItem.id} value={tambahMenuItem.id}>
+                                        {tambahMenuItem.nama_item}
                                         </option>
                                 ))}
                             </select>

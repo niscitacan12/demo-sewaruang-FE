@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaBars, FaBuilding, FaChartLine, FaSignInAlt, FaTimes, FaUsers, FaCalendarCheck } from 'react-icons/fa';
+import { FaBars, FaBuilding, FaChartLine, FaSignInAlt, FaUsers, FaCalendarCheck, FaTimes } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 const Sidebar = () => {

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../../components/Sidebar';
 import { FaArrowLeft, FaSave } from 'react-icons/fa';
-import { useActionData, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 
 const UpdateDataBookingTempat = () => {
@@ -12,9 +13,12 @@ const UpdateDataBookingTempat = () => {
     const [jumlah_orang, setJumlah_orang] = useState("");
     const [keterangan, setKeterangan] = useState("");
     const [tanggal, setTanggal] = useState("");
-    // const [selectedDataRuang, setSelecteDataRuang] = useState("");
-    // const [tempatList, setTempatList] = useState([]);
-    // const [nama_pelanggan, setNama_pelanggan] = useState("");
+    const [PelangganList, setPelangganList] = useState([]);
+    const [nama_pelanggan, setNama_pelanggan] = useState("");
+    const [Data_ruangList, setData_ruangList] = useState([]);
+    const [tempat, setTempat] = useState("");
+    const [menu_tambahList, setMenu_tambahList] = useState([]);
+    const [nama_item, setNama_item] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -38,8 +42,6 @@ const UpdateDataBookingTempat = () => {
                 setJumlah_orang(dataBookingTempat.jumlah_orang);
                 setKeterangan(dataBookingTempat.keterangan);
                 setTanggal(dataBookingTempat.tanggal);
-                // setSelecteDataRuang(dataBookingTempat.dataRuangModel.id);
-                // setNama_pelanggan(dataBookingTempat.nama_pelanggan);
             } catch (error) {
                 alert("Terjadi kesalahan Sir! " + error);
             }
@@ -47,6 +49,73 @@ const UpdateDataBookingTempat = () => {
 
         fetchData();
     }, [id]);
+
+    // getAllData pelanggan
+    const fetchDataPelanggan = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+
+            const response = await axios.get(
+                `http://localhost:7000/api/pelanggan/all`,
+                config
+            );
+            setPelangganList(response.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    // getAllData ruang
+    const fetchDataRuang = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+
+            const response = await axios.get(
+                `http://localhost:7000/api/data_ruang/all`,
+                config
+            );
+            setData_ruangList(response.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    // getAll menu tambah
+    const fetchDataMenuTambahan = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+
+            const response = await axios.get(
+                `http://localhost:7000/api/menu_tambahan/all`,
+                config
+            );
+            setMenu_tambahList(response.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchDataPelanggan();
+        fetchDataRuang();
+        fetchDataMenuTambahan();
+    }, []);
+
 
     const jam_akhirChangeHandler = (event) => {
         setJam_akhir(event.target.value);
@@ -63,33 +132,49 @@ const UpdateDataBookingTempat = () => {
     const tanggalChangeHandler = (event) => {
         setTanggal(event.target.value);
     }
-    // const data_ruangChangeHandler = (event) => {
-    //     setSelecteDataRuang(event.target.value);
-    // }
 
-    // const getAllDataRuang = async () => {
-    //     const token = localStorage.getItem("token");
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const token = localStorage.getItem('token');
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            const payload = {
+                jam_akhir,
+                jam_awal,
+                jumlah_orang,
+                keterangan,
+                tanggal,
+                tempat,
+                nama_item,
+            };
+            const response = await axios.put(
+                `http://localhost:7000/api/data_tempat/${id}`,
+                payload,
+                config
+            );
+            console.log(response.data);
 
-    //     try {
-    //         const response = await axios.get(`http://localhost:7000/api/data_ruang/all`, {
-    //           headers: {
-    //             Authorization: `Bearer ${token}`,
-    //           },
-    //         });
-
-    //         setTempatList(response.data);
-    //     } catch (error) {
-    //         console.error("Error fetching data:", error);
-    //     }
-    // };
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Edit Success!!",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              window.location.href = "/peminjaman_tempat";
+            // Redirect or show success message
+        } catch (error) {
+            console.error('Error updating data:', error);
+        }
+    };
 
     const batal = () => {
         window.location.href = "/peminjaman_tempat";
     };
-
-    // useEffect(() => {
-    //     getAllDataRuang();
-    // }, []);
 
   return (
     <div className="flex h-screen bg-gray-100 dark:bg-gray-100">
@@ -105,25 +190,27 @@ const UpdateDataBookingTempat = () => {
                     <hr className="border-t-2 border-blue-500 mb-4" />  
                 </div>
                 <div className="p-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <div className="relative z-0 w-full mb-5 group">
-                            <input
-                                type="text"
-                                name="nama_pelanggan"
-                                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
-                                placeholder=""
-                                autoComplete="off"
-                                // value={jam_awal}
-                                // onChange={(e) => setJam_awal(e.target.value)}
-                                required
-                                readOnly
-                            />
                             <label
-                                htmlFor="time"
                                 className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                             >
                                 Nama Pelanggan
                             </label>
+                            <select
+                                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                                required
+                                value={nama_pelanggan} 
+                                onChange={(e) => setNama_pelanggan(e.target.value)}
+                                disabled
+                            >
+                                {/* Menambahkan opsi dari data pelanggan */}
+                                {PelangganList.map((pelanggan) => (
+                                    <option key={pelanggan.id} value={pelanggan.id}>
+                                        {pelanggan.nama_pelanggan}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
                         <div className="relative z-0 w-full mb-5 group">
                             <label
@@ -133,21 +220,16 @@ const UpdateDataBookingTempat = () => {
                             </label>
                             <select
                                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
-                                id="data_ruang"
-                                name="data_ruang"
-                                autoComplete="tempat"
-                                // value={selectedDataRuang}
-                                // onChange={data_ruangChangeHandler}
                                 required
+                                value={tempat} 
+                                onChange={(e) => setTempat(e.target.value)}
                             >
-                                {/* <option value="" disabled>
-                                        Pilih Ruangan
+                                {/* Menambahkan opsi dari data pelanggan */}
+                                {Data_ruangList.map((dataRuang) => (
+                                    <option key={dataRuang.id} value={dataRuang.id}>
+                                        {dataRuang.tempat}
                                     </option>
-                                    {tempatList.map((dataRuangItem) => (
-                                        <option key={dataRuangItem.id} value={dataRuangItem.id}>
-                                        {dataRuangItem.tempat}
-                                        </option>
-                                ))} */}
+                                ))}
                             </select>
                         </div>
                         <div className="relative z-0 w-full mb-5 group">
@@ -158,21 +240,16 @@ const UpdateDataBookingTempat = () => {
                             </label>
                             <select
                                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
-                                // id="menu_tambah"
-                                // name="menu_tambah"
-                                // autoComplete="item-nama"
-                                // value={selectedTambahMenu}
-                                // onChange={tambah_menuChangeHandler}
                                 required
+                                value={nama_item} 
+                                onChange={(e) => setNama_item(e.target.value)}
                             >
-                                {/* <option value="" disabled>
-                                        Pilih Menu Tambah
+                                {/* Menambahkan opsi dari data pelanggan */}
+                                {menu_tambahList.map((menuTambah) => (
+                                    <option key={menuTambah.id} value={menuTambah.id}>
+                                        {menuTambah.nama_item}
                                     </option>
-                                    {nama_itemList.map((Menu_tambahItem) => (
-                                        <option key={Menu_tambahItem.id} value={Menu_tambahItem.id}>
-                                        {Menu_tambahItem.nama_item}
-                                        </option>
-                                ))} */}
+                                ))}
                             </select>
                         </div>
                         <div className="relative z-0 w-full mb-5 group">

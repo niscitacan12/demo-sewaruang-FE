@@ -15,10 +15,13 @@ const UpdateDataBookingTempat = () => {
     const [tanggal, setTanggal] = useState("");
     const [PelangganList, setPelangganList] = useState([]);
     const [nama_pelanggan, setNama_pelanggan] = useState("");
+    const [selectedPelanggan, setSelectedPelanggan] = useState("");
     const [Data_ruangList, setData_ruangList] = useState([]);
     const [tempat, setTempat] = useState("");
+    const [selectedData_ruang, setSelectedData_ruang] = useState("");
     const [menu_tambahList, setMenu_tambahList] = useState([]);
     const [nama_item, setNama_item] = useState("");
+    const [selectedMenu_tambah, setSelectedMenu_tambah] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -42,6 +45,9 @@ const UpdateDataBookingTempat = () => {
                 setJumlah_orang(dataBookingTempat.jumlah_orang);
                 setKeterangan(dataBookingTempat.keterangan);
                 setTanggal(dataBookingTempat.tanggal);
+                setSelectedPelanggan(dataBookingTempat.pelangganModel.id);
+                setSelectedData_ruang(dataBookingTempat.dataRuangModel.id);
+                setSelectedMenu_tambah(dataBookingTempat.tambahMenuModel.id);
             } catch (error) {
                 alert("Terjadi kesalahan Sir! " + error);
             }
@@ -114,7 +120,15 @@ const UpdateDataBookingTempat = () => {
         fetchDataPelanggan();
         fetchDataRuang();
         fetchDataMenuTambahan();
-    }, []);
+
+        // Temukan objek pelanggan yang sesuai dari PelangganList
+        const selectedCustomer = PelangganList.find(customer => customer.id === selectedPelanggan);
+
+        // Jika objek pelanggan ditemukan, atur nama pelanggan sesuai
+        if (selectedCustomer) {
+            setNama_pelanggan(selectedCustomer.nama_pelanggan);
+        }
+    }, [selectedPelanggan, PelangganList]);
 
 
     const jam_akhirChangeHandler = (event) => {
@@ -132,6 +146,15 @@ const UpdateDataBookingTempat = () => {
     const tanggalChangeHandler = (event) => {
         setTanggal(event.target.value);
     }
+    const data_ruangChangeHandler = (event) => {
+        setSelectedData_ruang(event.target.value);
+    }
+    const pelangganChangeHandler = (event) => {
+        setSelectedPelanggan(event.target.value);
+    }
+    const menu_tambahChangeHandler = (event) => {
+        setSelectedMenu_tambah(event.target.value);
+    }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -148,8 +171,9 @@ const UpdateDataBookingTempat = () => {
                 jumlah_orang,
                 keterangan,
                 tanggal,
-                tempat,
-                nama_item,
+                pelangganModel: { id : selectedPelanggan },
+                dataRuangModel: { id : selectedData_ruang },
+                tambahMenuModel: { id : selectedMenu_tambah },
             };
             const response = await axios.put(
                 `http://localhost:7000/api/data_tempat/${id}`,
@@ -193,24 +217,23 @@ const UpdateDataBookingTempat = () => {
                     <form onSubmit={handleSubmit}>
                         <div className="relative z-0 w-full mb-5 group">
                             <label
-                                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-600 peer-focus:dark"
                             >
                                 Nama Pelanggan
                             </label>
-                            <select
-                                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                            <input
+                                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600"
                                 required
                                 value={nama_pelanggan} 
-                                onChange={(e) => setNama_pelanggan(e.target.value)}
-                                disabled
-                            >
-                                {/* Menambahkan opsi dari data pelanggan */}
-                                {PelangganList.map((pelanggan) => (
-                                    <option key={pelanggan.id} value={pelanggan.id}>
-                                        {pelanggan.nama_pelanggan}
+                                readOnly
+                                // onChange={pelangganChangeHandler}
+                            />
+                                {/* {PelangganList.map((dataPelanggan) => (
+                                    <option key={dataPelanggan.id} value={dataPelanggan.id}>
+                                        {dataPelanggan.nama_pelanggan}
                                     </option>
                                 ))}
-                            </select>
+                            </select> */}
                         </div>
                         <div className="relative z-0 w-full mb-5 group">
                             <label
@@ -221,10 +244,9 @@ const UpdateDataBookingTempat = () => {
                             <select
                                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                                 required
-                                value={tempat} 
-                                onChange={(e) => setTempat(e.target.value)}
+                                value={selectedData_ruang} 
+                                onChange={data_ruangChangeHandler}
                             >
-                                {/* Menambahkan opsi dari data pelanggan */}
                                 {Data_ruangList.map((dataRuang) => (
                                     <option key={dataRuang.id} value={dataRuang.id}>
                                         {dataRuang.tempat}
@@ -241,8 +263,8 @@ const UpdateDataBookingTempat = () => {
                             <select
                                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                                 required
-                                value={nama_item} 
-                                onChange={(e) => setNama_item(e.target.value)}
+                                value={selectedMenu_tambah} 
+                                onChange={menu_tambahChangeHandler}
                             >
                                 {/* Menambahkan opsi dari data pelanggan */}
                                 {menu_tambahList.map((menuTambah) => (

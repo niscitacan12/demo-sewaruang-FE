@@ -147,7 +147,7 @@ function Register() {
                                 </div>
                             </div>
                             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                              Sudah memiliki akun? <a href="/login" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Masuk</a>
+                              Sudah memiliki akun? <a href="/" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Masuk</a>
                             </p>
                             <button
                                 type="submit"
@@ -157,7 +157,7 @@ function Register() {
                             </button>
                         </form>
                     </div>
-                    <div className="hidden md:block" style={{ backgroundColor: 'blue' }}>
+                    <div className="hidden md:block overflow-hidden" style={{ borderRadius: '10px' }}>
                         <img
                             className="object-cover w-full h-full"
                             src="https://static.vecteezy.com/system/resources/thumbnails/002/027/488/small_2x/illustration-of-sign-in-page-login-website-page-and-form-people-with-smartphone-screen-vector.jpg"

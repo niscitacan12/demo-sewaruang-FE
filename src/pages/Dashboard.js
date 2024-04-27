@@ -22,7 +22,7 @@ const Dashboard = () => {
                 }
             );
    
-            setPelanggan(response.data.slice(0,5));
+            setPelanggan(response.data);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -42,7 +42,7 @@ const Dashboard = () => {
                 }
             );
    
-            setRuangan(response.data.slice(0,5));
+            setRuangan(response.data);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -62,7 +62,7 @@ const Dashboard = () => {
                 }
             );
    
-            setData_booking_tempat(response.data.slice(0,5));
+            setData_booking_tempat(response.data);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -79,8 +79,8 @@ const Dashboard = () => {
         <div className="w-1/5">
             <Sidebar />
         </div>
-        <div className="w-full sm:w-4/5 p-4 sm:ml-4 overflow-y-auto bg-fixed bg-cover bg-center">
-            <div className="grid grid-cols-3 gap-4 mt-12">
+        <div className="w-full sm:w-4/5 p-4 sm:ml-4 overflow-y-auto bg-fixed bg-cover bg-center bg-fixed">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-12 mx-auto max-w-7xl">
                 <div className="max-w-xs p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative mb-8">
                     <FaUsers className="absolute top-0 right-0 mt-4 mr-10 text-5xl text-gray-600 dark:text-gray-400" />
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-400 dark:text-white">
@@ -126,12 +126,12 @@ const Dashboard = () => {
             </div>
 
             {/* tabel pelanggan */}
-            <div className="max-3 mb-4">
-                <div className="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative">
+            <div className="mb-4 mx-auto max-w-7xl">
+                <div className="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative overflow-x-auto">
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-400 dark:text-white">
                         Identifikasi Pelanggan
                     </h5>
-                    <hr className="my-4 border-gray-300 dark:border-gray-600" />
+                    <hr className="my-4 w-full border-gray-300 dark:border-gray-600 overflow-x-auto" />
                     <table className="w-full table-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead className="text-left text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
@@ -144,7 +144,7 @@ const Dashboard = () => {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
-                            {pelanggan.map((dataUser, index) => (
+                            {pelanggan.slice(0, 5).map((dataUser, index) => (
                                 <tr 
                                     className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                                     key={index}
@@ -163,8 +163,8 @@ const Dashboard = () => {
             </div>
 
             {/* tabel ruangan */}
-            <div className="max-3 mb-4">
-                <div className="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative">
+            <div className="mb-4 mx-auto max-w-7xl">
+                <div className="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative overflow-x-auto">
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-400 dark:text-white">
                         Data Tempat
                     </h5>
@@ -181,7 +181,7 @@ const Dashboard = () => {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
-                            {ruangan.map((dataRuang, index) => (
+                            {ruangan.slice(0, 5).map((dataRuang, index) => (
                                 <tr 
                                     className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                                     key={index}
@@ -200,8 +200,8 @@ const Dashboard = () => {
             </div>
 
             {/* tabel sewa tempat */}
-            <div className="max-3 mb-4">
-                <div className="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative">
+            <div className="mb-4 mx-auto max-w-7xl">
+                <div className="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative overflow-x-auto">
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-400 dark:text-white">
                         Sewa Ruangan
                     </h5>
@@ -221,7 +221,7 @@ const Dashboard = () => {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
-                            {data_booking_tempat.map((dataPeminjamanTempat, index) => (
+                            {data_booking_tempat.slice(0, 5).map((dataPeminjamanTempat, index) => (
                                 <tr 
                                     className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                                     key={index}

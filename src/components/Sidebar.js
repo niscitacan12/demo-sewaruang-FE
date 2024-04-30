@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 const Sidebar = () => {
     const [showSidebar, setShowSidebar] = useState(false);
 
+    // function logout
     function logout(event) {
         event.preventDefault();
     
@@ -42,7 +43,9 @@ const Sidebar = () => {
             >
                 <div className="h-full px-3 py-4 overflow-y-auto bg-blue-500 dark:bg-blue-500">
                     <div className="flex items-center justify-center mb-3">
-                        <span className="text-xl font-bold text-gray-800">Sewa Ruang</span>
+                        <span className="text-xl text-gray-600">★</span> 
+                            <span className="text-xl font-bold text-gray-700 mx-2">Sewa Ruang</span>
+                        <span className="text-xl text-gray-600">★</span> 
                     </div>
                     <hr className="mt-3" />
                     <ul className="mt-4 mx-5">

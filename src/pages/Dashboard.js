@@ -75,11 +75,13 @@ const Dashboard = () => {
     }, []);
 
   return (
-    <div className="flex h-screen bg-gray-100 dark:bg-gray-100">
+    <div className="flex flex-col md:flex-row h-screen bg-gray-100 dark:bg-gray-100">
         <div className="w-1/5">
             <Sidebar />
         </div>
         <div className="w-full sm:w-4/5 p-4 sm:ml-4 overflow-y-auto bg-fixed bg-cover bg-center bg-fixed">
+
+            {/* card dashboard  */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-12 mx-auto max-w-7xl">
                 <div className="max-w-xs p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative mb-8">
                     <FaUsers className="absolute top-0 right-0 mt-4 mr-10 text-5xl text-gray-600 dark:text-gray-400" />

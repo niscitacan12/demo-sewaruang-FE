@@ -15,6 +15,7 @@ const DetailBookingTempat = () => {
     const [data_ruang, setData_ruang] = useState("");
     const [menu_tambah, setMenu_tambah] = useState("");
 
+    // get all data booking tempat untuk detail
     useEffect(() => {
         const fetchData = async () => {
           try {
@@ -53,7 +54,7 @@ const DetailBookingTempat = () => {
     };
 
   return (
-    <div className="flex h-screen bg-gray-100 dark:bg-gray-100">
+    <div className="flex flex-col md:flex-row h-screen bg-gray-100 dark:bg-gray-100">
         <div className="w-1/5">
             <Sidebar />
         </div>
@@ -210,6 +211,7 @@ const DetailBookingTempat = () => {
                             Keterangan
                         </label>
                     </div>
+                    
                     {/* Tombol kembali menggunakan Link */}
                     <div className="flex justify-between mt-6">
                         <button

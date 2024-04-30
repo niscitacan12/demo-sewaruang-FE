@@ -10,6 +10,7 @@ const UpdatePelanggan = () => {
     const [nama_pelanggan, setNama_pelanggan] = useState("");
     const [no_telepon, setNo_telepon] = useState("");
 
+    // get all data untuk ubah
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -85,7 +86,7 @@ const UpdatePelanggan = () => {
     };
 
   return (
-    <div className="flex h-screen bg-gray-100 dark:bg-gray-100">
+    <div className="flex flex-col md:flex-row h-screen bg-gray-100 dark:bg-gray-100">
         <div className="w-1/5">
             <Sidebar />
         </div>

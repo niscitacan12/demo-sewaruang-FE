@@ -23,6 +23,7 @@ const UpdateDataBookingTempat = () => {
     const [nama_item, setNama_item] = useState("");
     const [selectedMenu_tambah, setSelectedMenu_tambah] = useState("");
 
+    // get all data booking tempat untuk ubah
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -156,6 +157,7 @@ const UpdateDataBookingTempat = () => {
         setSelectedMenu_tambah(event.target.value);
     }
 
+    // submit untuk ubah
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -201,7 +203,7 @@ const UpdateDataBookingTempat = () => {
     };
 
   return (
-    <div className="flex h-screen bg-gray-100 dark:bg-gray-100">
+    <div className="flex flex-col md:flex-row h-screen bg-gray-100 dark:bg-gray-100">
         <div className="w-1/5">
             <Sidebar />
         </div>
@@ -226,14 +228,7 @@ const UpdateDataBookingTempat = () => {
                                 required
                                 value={nama_pelanggan} 
                                 readOnly
-                                // onChange={pelangganChangeHandler}
                             />
-                                {/* {PelangganList.map((dataPelanggan) => (
-                                    <option key={dataPelanggan.id} value={dataPelanggan.id}>
-                                        {dataPelanggan.nama_pelanggan}
-                                    </option>
-                                ))}
-                            </select> */}
                         </div>
                         <div className="relative z-0 w-full mb-5 group">
                             <label

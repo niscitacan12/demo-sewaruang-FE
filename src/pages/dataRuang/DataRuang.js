@@ -11,6 +11,7 @@ const DataRuang = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(5);
 
+    // get all data ruang
     const getAllDataRuangan = async () => {
         const token = localStorage.getItem("token");
    
@@ -90,7 +91,7 @@ const DataRuang = () => {
     }, []);
 
   return (
-    <div className="flex h-screen bg-gray-100 dark:bg-gray-100">
+    <div className="flex h-screen flex-col md:flex-row bg-gray-100 dark:bg-gray-100">
         <div className="w-1/5">
             <Sidebar />
         </div>
@@ -100,6 +101,8 @@ const DataRuang = () => {
             </h5>
             <div className="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative">
                 <div className="flex items-center justify-between">
+
+                    {/* fitur search  */}
                     <div className="flex items-center">
                         <FaSearch className="mr-2 text-gray-500" />
                         <input
@@ -117,95 +120,98 @@ const DataRuang = () => {
                     </Link>
                 </div>
                 <hr className="my-4 border-gray-300 dark:border-gray-600" />
-                <table className="w-full table-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead className="text-left text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" className="px-6 py-3">
-                                No
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Tempat
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Nomor Ruangan
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Keterangan
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Aksi
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200">
-                        {currentItems
-                            .filter((dataRuang) => 
-                                dataRuang.tempat
-                                .toLowerCase()
-                                .includes(searchTerm.toLowerCase())
-                            ).map((dataRuang, index) => (
-                            <tr 
-                                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
-                                key={index}
-                            >
-                                <td
-                                    scope="row"
-                                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                >
-                                    {indexOfFirstItem + index + 1}
-                                </td>
-                                <td
-                                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                >
-                                    {dataRuang.tempat}
-                                </td>
-                                <td className="px-6 py-4">{dataRuang.nomor_ruangan}</td>
-                                <td className="px-6 py-4">{dataRuang.keterangan}</td>
-                                <td className="whitespace-nowrap text-center py-2">
-                                    <div className="flex items-center hover:space-x-1">
-                                        <Link to={`/data_ruangan/ubah_ruangan/${dataRuang.id}`}>
-                                        <button className="z-20 block rounded-full border-2 border-white bg-blue-100 p-4 text-blue-700 transition-all hover:scale-110 focus:outline-none focus:ring active:bg-blue-50"
-                                        >
-                                            <FaPenSquare className="z-20" title="Edit" />
-                                        </button>
-                                        </Link>
-                                        <button className="z-30 block rounded-full border-2 border-white bg-red-100 p-4 text-red-700 transition-all hover:scale-110 focus:outline-none focus:ring active:bg-red-50"
-                                        onClick={() => deleteRuangan(dataRuang.id)}
-                                        >
-                                            <FaTrashAlt className="z-30" title="Delete" />
-                                        </button>
-                                    </div>
-                                </td>
+                <div className="overflow-x-auto">
+                    <table className="w-full table-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead className="text-left text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" className="px-6 py-3">
+                                    No
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Tempat
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Nomor Ruangan
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Keterangan
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Aksi
+                                </th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody className="divide-y divide-gray-200">
+                            {currentItems
+                                .filter((dataRuang) => 
+                                    dataRuang.tempat
+                                    .toLowerCase()
+                                    .includes(searchTerm.toLowerCase())
+                                ).map((dataRuang, index) => (
+                                <tr 
+                                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
+                                    key={index}
+                                >
+                                    <td
+                                        scope="row"
+                                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                    >
+                                        {indexOfFirstItem + index + 1}
+                                    </td>
+                                    <td
+                                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                    >
+                                        {dataRuang.tempat}
+                                    </td>
+                                    <td className="px-6 py-4">{dataRuang.nomor_ruangan}</td>
+                                    <td className="px-6 py-4">{dataRuang.keterangan}</td>
+                                    <td className="whitespace-nowrap text-center py-2">
+                                        <div className="flex items-center hover:space-x-1">
+                                            <Link to={`/data_ruangan/ubah_ruangan/${dataRuang.id}`}>
+                                            <button className="z-20 block rounded-full border-2 border-white bg-blue-100 p-4 text-blue-700 transition-all hover:scale-110 focus:outline-none focus:ring active:bg-blue-50"
+                                            >
+                                                <FaPenSquare className="z-20" title="Edit" />
+                                            </button>
+                                            </Link>
+                                            <button className="z-30 block rounded-full border-2 border-white bg-red-100 p-4 text-red-700 transition-all hover:scale-110 focus:outline-none focus:ring active:bg-red-50"
+                                            onClick={() => deleteRuangan(dataRuang.id)}
+                                            >
+                                                <FaTrashAlt className="z-30" title="Delete" />
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div className="flex justify-between items-center mt-4">
+                {/* fitur pagination  */}
                 <div>
-                <button
-                    onClick={() => paginate(currentPage - 1)}
-                    disabled={currentPage === 1}
-                    className={`px-3 py-1 mr-2 rounded-md bg-blue-500 text-white ${
-                    currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
-                    }`}
-                >
-                    <FaAngleLeft className="inline-block" />
-                </button>
-                <button
-                    onClick={() => paginate(currentPage + 1)}
-                    disabled={currentPage === Math.ceil(ruangan.length / itemsPerPage)}
-                    className={`px-3 py-1 rounded-md bg-blue-500 text-white ${
-                    currentPage === Math.ceil(ruangan.length / itemsPerPage) ? "opacity-50 cursor-not-allowed" : ""
-                    }`}
-                >
-                    <FaAngleRight className="inline-block" />
-                </button>
-                </div>
-                <div>
-                <p className="text-gray-600 text-sm">
-                    Page {currentPage} of {Math.ceil(ruangan.length / itemsPerPage)}
-                </p>
+                    <button
+                        onClick={() => paginate(currentPage - 1)}
+                        disabled={currentPage === 1}
+                        className={`px-3 py-1 mr-2 rounded-md bg-blue-500 text-white ${
+                        currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+                        }`}
+                    >
+                        <FaAngleLeft className="inline-block" />
+                    </button>
+                    <button
+                        onClick={() => paginate(currentPage + 1)}
+                        disabled={currentPage === Math.ceil(ruangan.length / itemsPerPage)}
+                        className={`px-3 py-1 rounded-md bg-blue-500 text-white ${
+                        currentPage === Math.ceil(ruangan.length / itemsPerPage) ? "opacity-50 cursor-not-allowed" : ""
+                        }`}
+                    >
+                        <FaAngleRight className="inline-block" />
+                    </button>
+                    </div>
+                    <div>
+                    <p className="text-gray-600 text-sm">
+                        Page {currentPage} of {Math.ceil(ruangan.length / itemsPerPage)}
+                    </p>
                 </div>
             </div>
         </div>

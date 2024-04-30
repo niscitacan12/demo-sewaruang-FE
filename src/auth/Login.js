@@ -55,7 +55,7 @@ function Login() {
     };
 
     return (
-        <section className="bg-blue-200 dark:bg-blue-200 min-h-screen flex justify-center items-center">
+        <section className="bg-blue-100 dark:bg-blue-100 min-h-screen flex justify-center items-center">
             <div className="flex flex-col items-center justify-center">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-full bg-white rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-blue-600 dark:border-blue-500">
                     <div className="p-8 space-y-4 md:space-y-6">
@@ -68,6 +68,8 @@ function Login() {
                             />
                              Masuk ke akun anda  
                         </a>
+
+                        {/* form login */}
                         <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit} method='POST'>
                             <div className="relative">
                                 <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -114,7 +116,6 @@ function Login() {
                                             type="checkbox"
                                             className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
                                             onChange={togglePasswordVisibility}
-                                            required
                                         />
                                     </div>
                                     <div className="ml-3 text-sm">

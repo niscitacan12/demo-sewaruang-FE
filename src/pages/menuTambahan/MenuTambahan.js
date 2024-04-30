@@ -11,6 +11,7 @@ const MenuTambahan = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(5);
 
+    // get all data menu tambah
     const getAllDataMenuTambahan = async () => {
         const token = localStorage.getItem("token");
    
@@ -30,6 +31,7 @@ const MenuTambahan = () => {
         }
     };
 
+    // detele menu tambah
     const deleteMenuTambahan = async (id) => {
         const token = localStorage.getItem("token");
     
@@ -90,7 +92,7 @@ const MenuTambahan = () => {
     };
 
   return (
-    <div className="flex h-screen bg-gray-100 dark:bg-gray-100">
+    <div className="flex h-screen flex-col md:flex-row bg-gray-100 dark:bg-gray-100">
         <div className="w-1/5">
             <Sidebar />
         </div>
@@ -100,6 +102,8 @@ const MenuTambahan = () => {
             </h5>
             <div className="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative">
                 <div className="flex items-center justify-between">
+
+                    {/* fitur search  */}
                     <div className="flex items-center">
                         <FaSearch className="mr-2 text-gray-500" />
                         <input
@@ -117,71 +121,75 @@ const MenuTambahan = () => {
                     </Link>
                 </div>
                 <hr className="my-4 border-gray-300 dark:border-gray-600" />
-                <table className="w-full table-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead className="text-left text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" className="px-6 py-3">
-                                No
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Nama Item
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Jenis
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Satuan
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Aksi
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200">
-                        {currentItems
-                            .filter((dataMenuTambahan) =>
-                                dataMenuTambahan.nama_item
-                                .toLowerCase()
-                                .includes(searchTerm.toLowerCase())
-                            ).map((dataMenuTambahan, index) => (
-                            <tr 
-                                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
-                                key={index}
-                            >
-                                <td
-                                    scope="row"
-                                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                >
-                                    {indexOfFirstItem + index + 1}
-                                </td>
-                                <td
-                                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                >
-                                    {dataMenuTambahan.nama_item}
-                                </td>
-                                <td className="px-6 py-4">{dataMenuTambahan.jenis}</td>
-                                <td className="px-6 py-4">{dataMenuTambahan.satuan_peminjaman}</td>
-                                <td className="whitespace-nowrap text-center py-2">
-                                    <div className="flex items-center hover:space-x-1">
-                                        <Link to={`/menu_tambahan/ubah_menu_tambahan/${dataMenuTambahan.id}`}>
-                                        <button className="z-20 block rounded-full border-2 border-white bg-blue-100 p-4 text-blue-700 transition-all hover:scale-110 focus:outline-none focus:ring active:bg-blue-50"
-                                        >
-                                            <FaPenSquare className="z-20" title="Edit" />
-                                        </button>
-                                        </Link>
-                                        <button className="z-30 block rounded-full border-2 border-white bg-red-100 p-4 text-red-700 transition-all hover:scale-110 focus:outline-none focus:ring active:bg-red-50"
-                                        onClick={() => deleteMenuTambahan(dataMenuTambahan.id)}
-                                        >
-                                            <FaTrashAlt className="z-30" title="Delete" />
-                                        </button>
-                                    </div>
-                                </td>
+                <div className="overflow-x-auto">
+                    <table className="w-full table-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead className="text-left text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" className="px-6 py-3">
+                                    No
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Nama Item
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Jenis
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Satuan
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Aksi
+                                </th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody className="divide-y divide-gray-200">
+                            {currentItems
+                                .filter((dataMenuTambahan) =>
+                                    dataMenuTambahan.nama_item
+                                    .toLowerCase()
+                                    .includes(searchTerm.toLowerCase())
+                                ).map((dataMenuTambahan, index) => (
+                                <tr 
+                                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
+                                    key={index}
+                                >
+                                    <td
+                                        scope="row"
+                                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                    >
+                                        {indexOfFirstItem + index + 1}
+                                    </td>
+                                    <td
+                                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                    >
+                                        {dataMenuTambahan.nama_item}
+                                    </td>
+                                    <td className="px-6 py-4">{dataMenuTambahan.jenis}</td>
+                                    <td className="px-6 py-4">{dataMenuTambahan.satuan_peminjaman}</td>
+                                    <td className="whitespace-nowrap text-center py-2">
+                                        <div className="flex items-center hover:space-x-1">
+                                            <Link to={`/menu_tambahan/ubah_menu_tambahan/${dataMenuTambahan.id}`}>
+                                            <button className="z-20 block rounded-full border-2 border-white bg-blue-100 p-4 text-blue-700 transition-all hover:scale-110 focus:outline-none focus:ring active:bg-blue-50"
+                                            >
+                                                <FaPenSquare className="z-20" title="Edit" />
+                                            </button>
+                                            </Link>
+                                            <button className="z-30 block rounded-full border-2 border-white bg-red-100 p-4 text-red-700 transition-all hover:scale-110 focus:outline-none focus:ring active:bg-red-50"
+                                            onClick={() => deleteMenuTambahan(dataMenuTambahan.id)}
+                                            >
+                                                <FaTrashAlt className="z-30" title="Delete" />
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div className="flex justify-between items-center mt-4">
+
+            {/* fitur pagination  */}
             <div>
               <button
                 onClick={() => paginate(currentPage - 1)}

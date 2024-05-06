@@ -24,6 +24,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
+          
           {/* Route untuk halaman register */}
           <Route path="/register" element={<Register />} />
 
@@ -99,6 +100,7 @@ function App() {
           <Route path="/menu_tambahan/ubah_menu_tambahan/:id" 
             element={isAuthenticated() ? <UpdateMenuTambahan /> : <Navigate to="/" />} 
           />
+
         </Routes>
       </BrowserRouter>
     </div>

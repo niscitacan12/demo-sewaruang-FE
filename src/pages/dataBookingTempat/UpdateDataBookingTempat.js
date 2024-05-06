@@ -207,6 +207,7 @@ const UpdateDataBookingTempat = () => {
         <div className="w-1/5">
             <Sidebar />
         </div>
+        {/* form ubah data booking  */}
         <div className="flex-1 max-h-screen overflow-y-auto container p-8">
             <div className="max-w-4xl w-full mx-auto">
                 <div className="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mb-4">
@@ -360,6 +361,7 @@ const UpdateDataBookingTempat = () => {
                             </label>
                         </div>
                         <div className="flex justify-between mt-6">
+                            {/* button kembali */}
                             <button
                                 type="button"
                                 onClick={batal}
@@ -367,6 +369,7 @@ const UpdateDataBookingTempat = () => {
                             >
                                 <FaArrowLeft className="w-4 h-4" />
                             </button>
+                            {/* button save  */}
                             <button
                                 type="submit"
                                 className="inline-flex items-center justify-center w-10 h-10 rounded-lg text-black outline outline-[#0b409c] text-sm sm:text-xs font-medium bg-white shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"

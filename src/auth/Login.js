@@ -10,6 +10,7 @@ function Login() {
     const [role, setRole] = useState("admin");
     const [show, setShow] = useState(false);
 
+    // function login 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -71,6 +72,7 @@ function Login() {
 
                         {/* form login */}
                         <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit} method='POST'>
+                            {/* form nama pelanggan  */}
                             <div className="relative">
                                 <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                     <div className="flex items-center">
@@ -89,6 +91,7 @@ function Login() {
                                     required
                                 />
                             </div>
+                            {/* form password  */}
                             <div className="relative">
                                 <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                     <div className="flex items-center">
@@ -108,6 +111,7 @@ function Login() {
                                     required
                                 />
                             </div>
+                            {/* form checkbox */}
                             <div className="flex items-center justify-between">
                                 <div className="flex items-start">
                                     <div className="flex items-center h-5">
@@ -126,6 +130,7 @@ function Login() {
                             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                                 Belum punya akun? <a href="/register" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Mendaftar</a>
                             </p>
+                            {/* button login  */}
                             <button
                                 type="submit"
                                 className="text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 float-right"

@@ -8,6 +8,7 @@ const TambahPelanggan = () => {
     const [nama_pelanggan, setNama_pelanggan] = useState("");
     const [no_telepon, setNo_telepon] = useState("");
 
+    // function tambah pelanggna 
     const addPelanggan = async (e) => {
         e.preventDefault();
 
@@ -64,6 +65,7 @@ const TambahPelanggan = () => {
             <div className="w-1/5">
                 <Sidebar />
             </div>
+            {/* form page tambah pelanggan  */}
             <div className="flex-1 max-h-screen overflow-y-auto container p-8">
                 <div className="max-w-4xl w-full mx-auto">
                     <div className="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mb-4">

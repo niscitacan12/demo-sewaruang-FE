@@ -24,6 +24,7 @@ const Sidebar = () => {
         });
     }
 
+    // function toggle sidebar 
     const toggleSidebar = () => {
         setShowSidebar(!showSidebar);
     };
@@ -36,6 +37,7 @@ const Sidebar = () => {
             >
                 {showSidebar ? <FaTimes className="w-6 h-6" /> : <FaBars className="w-6 h-6" />}
             </button>
+            {/* sidebar */}
             <aside
                 id="default-sidebar"
                 className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform bg-blue-900 dark:bg-blue-900 lg:translate-x-0 ${showSidebar ? 'translate-x-0' : '-translate-x-full'}`}

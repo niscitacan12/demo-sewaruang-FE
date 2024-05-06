@@ -58,6 +58,7 @@ const DetailBookingTempat = () => {
         <div className="w-1/5">
             <Sidebar />
         </div>
+        {/* form input detail  */}
         <div className="flex-1 max-h-screen overflow-y-auto container p-8">
             <div  className="max-w-4xl w-full mx-auto">
                 <div className="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mb-4">
@@ -67,6 +68,7 @@ const DetailBookingTempat = () => {
                     <hr className="border-t-2 border-blue-500 mb-4" />  
                 </div>
                 <div className="p-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    {/* nama pelanggan */}
                     <div className="relative z-0 w-full mb-5 group">
                         <input
                             type="text"
@@ -85,6 +87,7 @@ const DetailBookingTempat = () => {
                             Nama Pelanggan
                         </label>
                     </div>
+                    {/* nama ruangan  */}
                     <div className="relative z-0 w-full mb-5 group">
                         <input
                             type="text"
@@ -103,6 +106,7 @@ const DetailBookingTempat = () => {
                             Ruangan
                         </label>
                     </div>
+                    {/* menu tambah  */}
                     <div className="relative z-0 w-full mb-5 group">
                         <input
                             type="text"
@@ -121,6 +125,7 @@ const DetailBookingTempat = () => {
                             Tambah Menu
                         </label>
                     </div>
+                    {/* jam awal  */}
                     <div className="relative z-0 w-full mb-5 group">
                         <input
                             type="text"
@@ -139,6 +144,7 @@ const DetailBookingTempat = () => {
                             Jam Awal
                         </label>
                     </div>
+                    {/* jam akhir  */}
                     <div className="relative z-0 w-full mb-5 group">
                         <input
                             type="text"
@@ -157,6 +163,7 @@ const DetailBookingTempat = () => {
                             Jam Akhir
                         </label>
                     </div>
+                    {/* jumlah orang  */}
                     <div className="relative z-0 w-full mb-5 group">
                         <input
                             type="text"
@@ -175,6 +182,7 @@ const DetailBookingTempat = () => {
                             Jumlah Orang
                         </label>
                     </div>
+                    {/* tanggal  */}
                     <div className="relative z-0 w-full mb-5 group">
                         <input
                             type="text"
@@ -193,6 +201,7 @@ const DetailBookingTempat = () => {
                             Tanggal
                         </label>
                     </div>
+                    {/* keterangan */}
                     <div className="relative z-0 w-full mb-5 group">
                         <input
                             type="text"
